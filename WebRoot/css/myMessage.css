@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+<!--
+个人信息页 样式表 --> 
+/* remove rounds from all elements  start*/ 
+* {
+	padding: 0;
+	border: 0;
+}
+
+.Navigation-bar {
+	position:absolute;
+	top:120px;
+}
+.right {
+	margin:100px auto;
+}
+.form{
+	margin-top:0px;
+	margin-left:60px;
+}
+.input {
+	outline: none;
+	border: 0;
+	margin:0;
+	color: #34495e;
+}

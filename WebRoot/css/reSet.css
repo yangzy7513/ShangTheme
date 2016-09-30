@@ -1,0 +1,89 @@
+/* remove rounds from all elements  start*/
+div, input, select, textarea, span, img, table, td, th, p, a, button, ul, li {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+input,button,select,textarea {
+    outline: none;
+}
+a {
+    text-decoration: none;
+    color: burlywood;
+}
+a:focus {
+    outline: none !important;
+}
+
+a:hover, a:active {
+    outline: 0 !important;
+}
+
+select:focus {
+    outline: none !important;
+}
+/* remove rounds from all elements  end*/
+body {
+    /*背景图片*/
+    background-image: url("../images/bg_3.jpg");
+    /*字体颜色*/
+    color: #000;
+    /*字体大小*/
+    font-size: 16px;
+}
+.header{
+    background-image: url("../images/6.png");
+    width: 100%;
+    height: 70px;
+    min-width: 400px;
+}
+.register{
+    display: block;
+    float: right;
+    color: #ffffff;
+    font-size: 18px;
+    position: absolute;
+    left:70%;
+    top: 30px;
+    min-width: 300px;
+}
+.main {
+    width: 800px;
+    margin: 50px auto;
+}
+.target{
+    color: #f5f5f5;
+    display: block;
+    float: left;
+    font-weight:bold;
+    /*float: left;*/
+    text-align: center;
+    line-height: 120px;
+    background-image: url("../images/target.png");
+    width: 220px;
+    height: 110px;
+    margin-bottom: 50px;
+    margin-left: 40px;
+}
+.btn_next {
+    float: right;
+}
+.yeah {
+    float: left;
+    width: 100px;
+    margin-left: 160px;
+    margin-top: 50px;
+}
+.success {
+    font-size: 15px;
+    margin: 90px 200px 0px 0px;
+    float: right;
+}
+input.invalid {
+    background-color: #FF9;
+    border: 2px red inset;
+}
+label.invalid {
+    color: #F00;
+    font-weight: bold;
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"  
+      "http://tuckey.org/res/dtds/urlrewrite4.0.dtd">  
+
+<!-- Configuration file for UrlRewriteFilter http://www.tuckey.org/urlrewrite/ -->
+<!-- URL重写配置文件 -->
+<urlrewrite>
+	
+	<outbound-rule>
+		<note> The outbound-rule specifies that when response.encodeURL is called (if you are using JSTL c:url) 
+		the url /rewrite-status will be rewritten to /test/status/. The above rule and this outbound-rule means 
+		that end users should never see the url /rewrite-status only /test/status/ both in thier location bar and 
+		in hyperlinks in your pages. </note>
+		<from>/rewrite-status</from>
+		<to>/test/status/</to>
+	</outbound-rule>
+	
+	<!-- 自定义匹配 -->
+	
+	<rule>
+		<note> 用户修改个人信息迁移 </note>
+		<from>([0-9]+)/user.html</from>
+		<to type="redirect">ShangTheme/userinfo.do?id=$1</to>
+	</rule>
+	
+	<rule>
+		<note> 销毁用户 </note>
+		<from>(html/){0,1}exit</from>
+		<to type="redirect">ShangTheme/delsession.do</to>	
+	</rule>
+	
+	<rule>
+		<note> 获取订单</note>
+		<from>html/dingdan</from>
+		<to type="redirect">ShangTheme/getorder.do</to>	
+	</rule>
+	
+	<rule>
+		<note> 点击我的消息</note>
+		<from>html/msg</from>
+		<to type="redirect">ShangTheme/getletter.do</to>	
+	</rule>
+	
+	<rule>
+		<note> 获取用户收藏的主题</note>
+		<from>/mycollction</from>
+		<to type="redirect">getColBySid.do?pageNo=1</to>	
+	</rule>
+	
+	<rule>
+		<note> 获取品牌下的所有主题</note>
+		<from>brand/([0-9A-Za-z]+)</from>
+		<to type="redirect">ShangTheme/getbrandtheme.do?brandname=$1</to>	
+	</rule>
+	
+	
+</urlrewrite>
