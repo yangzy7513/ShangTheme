@@ -1,7 +1,10 @@
 package com.shangtheme.client.common;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -64,45 +67,8 @@ public class CommonUtil {
 	}
 	
 	/**
-	 * 过滤非文字
-	 * @param str
-	 * @return
-	 */
-	public static String plaintextFilter(String str){
-		String tmpString = str.replaceAll("(?i)[^a-zA-Z0-9\u4E00-\u9FA5]", "");
-		char[] cha = tmpString.toCharArray();
-		for (int i = 0; i < tmpString.length(); i++) {
-			if (cha[i] < 0xFF) {
-				cha[i] = ' ';
-			}
-		}
-		return String.copyValueOf(cha).trim();
-	}
-	
-	/**
-	 * 切割字符串
-	 * @param str
-	 * @param cutindex 切割每块的长度
-	 * @return
-	 */
-	public static String[] subString(String str, int cutindex){
-		String[] strArry2 = new String[str.length()/cutindex+1];
-		StringBuilder sbBuilder = new StringBuilder(str);
-		//截取索引
-		int index = 0;
-		for (int i = 0; i < str.length(); i+=cutindex) {
-			if (i+cutindex > str.length()-1) {
-				strArry2[index] = sbBuilder.substring(i);
-			} else {
-				strArry2[index] = sbBuilder.substring(i, i+cutindex);
-			}
-			index++;
-		}
-		
-		return strArry2;
-	}
-	/**
 	 * 获取当前系统时间
+	 * 
 	 * @param format 格式 
 	 * @格式例子 "yyyy/MM/dd" 或  "yyyy/MM/dd hh:mm:ss" 
 	 * @return
@@ -114,6 +80,23 @@ public class CommonUtil {
 		return datestr;
 	}
 	
+	/**
+	 * 後端執行JavaScript代碼
+	 * 
+	 * @param scriptCode
+	 * @throws IOException 
+	 * 
+	 * 舉個栗子 ： String scriptCode = "alert('请输入正确的用户名或密码');";
+	 *			CommonUtil.doSCript(scriptCode, response);
+	 */
+	public static void doSCript(String scriptCode , HttpServletResponse response ) throws IOException {
+		
+		response.setContentType("text/html;charset=utf-8");
+		response.getWriter().println("<script language='javascript' >"
+				+ scriptCode
+				+ "</script>");
+		
+	}
 	
 }
 

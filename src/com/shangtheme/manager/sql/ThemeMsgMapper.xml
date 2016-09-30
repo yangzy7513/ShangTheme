@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.shangtheme.manager.dao.ThemeMsgDao">
+ 	
+	<insert id="upLoadTheme" parameterType="com.shangtheme.client.entity.Theme">
+		INSERT INTO theme
+						(t_themename,
+		 				t_author,
+		 				t_category,
+		 				b_id,
+		 				t_firmware,
+		 				t_price,
+		 				t_discount,
+		 				t_status,
+		 				t_vip,
+		 				t_downloadpath,
+		 				t_abstract,
+		 				t_registerdate,
+		 				t_picpath)
+		 				VALUES
+		 				(#{t_themename},
+		 				#{t_author},
+		 				#{t_category},
+		 				#{b_id},
+		 				#{t_firmware},
+		 				#{t_price},
+		 				#{t_discount},
+		 				#{t_status},
+		 				#{t_vip},
+		 				#{t_downloadpath},
+		 				#{t_abstract},
+		 				#{t_registerdate},
+		 				#{t_picpath})
+		
+		
+	</insert>
+	
+	<!--  获取数据库中最后一条数据的主题ID -->		
+	<select id="getLastThemeId" resultType="int">
+		SELECT auto_increment FROM information_schema.`TABLES` WHERE TABLE_NAME = 'theme'
+	</select>
+ </mapper>

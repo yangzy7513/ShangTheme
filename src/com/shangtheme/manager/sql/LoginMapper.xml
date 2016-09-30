@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.shangtheme.manager.dao.LogInAndRegisterDao">
+ 	
+	<select id="getCount" parameterType="String" resultType="int">
+		
+		SELECT COUNT(*)
+		FROM administrator
+		WHERE m_user_name = #{name}
+	
+	</select>
+	
+	<insert id="register" parameterType="com.shangtheme.manager.entity.MuserEntity">
+		INSERT INTO administrator 
+					( m_user_name,
+					  m_password)
+					VALUES
+					( #{m_user_name},
+					  #{m_password})
+	
+	</insert>
+	
+	<select id="getPassword" parameterType="String" resultType="String">
+		
+		SELECT m_password
+		FROM administrator
+		WHERE m_user_name = #{user}
+	
+	</select>
+ </mapper>

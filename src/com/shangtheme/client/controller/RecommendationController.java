@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,6 +39,7 @@ public class RecommendationController {
 	 * @throws IOException
 	 */
 	@RequestMapping("/doRecommendation.do")
+	@Cacheable(value="Recommendation",key="#data")
 	public String doRecommendation(HttpServletRequest request){
 		
 		ReturnStatus status = recommendationService.doRecommendation();

@@ -61,6 +61,9 @@ public class Theme implements Serializable {
 	//下载地址
 	private String t_downloadpath;
 	
+	//详细描述
+	private String t_abstract;
+	
 	/************getter and setter****************/
 	
 	public int getT_status() {
@@ -176,4 +179,13 @@ public class Theme implements Serializable {
 		this.t_vip = t_vip;
 	}
 
+	public String getT_abstract() {
+		return t_abstract;
+	}
+
+	public void setT_abstract(String t_abstract) {
+		this.t_abstract = t_abstract;
+	}
+	
+	
 }

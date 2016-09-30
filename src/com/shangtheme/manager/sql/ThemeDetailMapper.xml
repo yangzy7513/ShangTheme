@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.shangtheme.manager.dao.ThemeDetailDao">
+ 	
+ 	<!-- 獲取全部主題信息 -->
+	<select id="getThemeMessage" resultType="map">
+		
+		SELECT 
+		T.t_id,
+		T.t_themename , 
+		T.t_status ,
+		T.t_price ,
+		T.t_author ,
+		T.t_downloadnum ,
+		T.t_vip 
+		FROM theme T
+		ORDER BY T.t_status
+	</select>
+	
+	<!-- 獲取摸一個主題的信息 -->
+	<select id="getTheme" parameterType="int" resultType="map">
+		
+		SELECT 
+		T.t_id,
+		T.t_themename , 
+		T.t_status ,
+		T.t_price ,
+		T.t_discount ,
+		T.t_author ,
+		T.t_picpath , 
+		T.t_category ,
+		T.t_downloadpath ,
+		T.t_downloadnum ,
+		T.t_vip ,
+		T.t_abstract ,
+		T.b_id ,
+		T.t_firmware ,
+		B.b_brandname
+		FROM theme T ,
+		brand B
+		WHERE 
+		T.t_id = #{t_id}
+		AND
+		B.b_id = T.b_id
+	</select>
+	
+	<!-- 刪除主題 -->
+	<delete id="deleteTheme" parameterType="int">
+		DELETE FROM theme
+		WHERE t_id = #{themeId}
+	</delete>
+	
+	<!-- 獲取主題狀態信息 -->
+	<select id="getThemeStatus" parameterType="int" resultType="int">
+	
+		SELECT
+			t_status
+		FROM
+			theme
+		WHERE
+			t_id = #{themeId}
+
+	</select>
+	
+	<!--上架主题 -->
+	<update id="upStoreTheme" parameterType="int">
+		UPDATE
+			theme
+		SET
+			t_status = 0
+		WHERE
+			t_id = #{themeId}
+	</update>
+	
+	<!--下架主题 -->
+	<update id="downStoreTheme" parameterType="int">
+		UPDATE
+			theme
+		SET
+			t_status = 1
+		WHERE
+			t_id = #{themeId}
+	</update>
+ </mapper>

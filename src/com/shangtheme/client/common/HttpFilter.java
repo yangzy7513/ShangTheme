@@ -40,11 +40,11 @@ public class HttpFilter implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object arg2) throws IOException {
 		HttpSession session = request.getSession();
-		SuserEntity user = (SuserEntity) session.getAttribute("suser");
-		if(user == null){
-			response.sendRedirect("index.jsp");
-			return false;
-		}
+//		SuserEntity user = (SuserEntity) session.getAttribute("suser");
+//		if(user == null){
+//			response.sendRedirect("index.jsp");
+//			return false;
+//		}
 		return true;
 	}
 

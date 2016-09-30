@@ -65,9 +65,9 @@ public class OrderController {
 		if (status.getStatus() == 0) {
 			@SuppressWarnings("unchecked")
 			List<Map<String, Object>> data = (List<Map<String, Object>>)status.getData();
-			request.setAttribute("order", data);
-			//esponse.sendRedirect("html/myDeal.jsp");
-			request.getRequestDispatcher("html/myDeal.jsp").forward(request, response);
+			session.setAttribute("order", data);
+			response.sendRedirect("html/myDeal.jsp");
+			//request.getRequestDispatcher("html/myDeal.jsp").forward(request, response);
 			
 		}
 	}
