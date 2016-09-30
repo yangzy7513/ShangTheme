@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.shangtheme.client.dao.ThemeDao">
+ 	
+ 	<!-- 查询主题,用户登录情况下查看是否收藏-->
+ 	<select id="getThemeByTid" parameterType="java.util.Map" resultType="map">
+ 		select t.t_id,
+			t.t_themename,
+			t.t_author,
+			t.t_firmware,
+			t.t_registerdate, 
+			t.t_downloadnum,
+			t.t_price,
+			t.t_discount,
+			t.t_status,t_vip,
+			t.t_abstract,
+			t.t_picpath,
+			b.b_brandname
+		<if test="s_id != -1">
+			,COUNT(c_id) AS collecstatus
+		</if>
+ 			from theme t
+			LEFT JOIN brand b 
+			ON t.b_id = b.b_id
+		<if test="s_id != -1">
+			JOIN collection c
+			ON c.t_id = t.t_id	
+		</if>
+ 		where t.t_id = #{t_id}
+ 		<if test="s_id != -1">
+			AND c.s_id = #{s_id}
+		</if>
+ 	</select>
+ 	
+ 	<!-- 判断是否已经购买该主题 -->
+ 	<select  id="getThemenews" parameterType="com.shangtheme.client.entity.Assets" resultType="int">
+ 		SELECT COUNT(*)
+		FROM theme T
+		JOIN assets A
+		ON A.t_id = T.t_id
+		WHERE s_id = #{s_id}
+		AND A.t_id = #{t_id}
+ 	</select>
+ 	
+ 	<!-- 超级搜索 -->
+ 	<select id="search" resultType="map">
+ 		SELECT   t_id,t_themename,CONCAT(t_themename,t_author,t_category,t_firmware) AS searchlist
+		FROM	   theme
+		WHERE   t_status = 0
+ 	</select>
+ 	
+ 	<!-- 获取品牌简介 -->
+ 	<select id="getBrandInfo" parameterType="string" resultType="com.shangtheme.client.entity.Brand">
+ 		SELECT 	b_company,b_registetime,b_logo,b_briefintroduce
+		  FROM    brand
+		WHERE 	b_enname = #{enname}
+ 	</select>
+ 	
+ 	<!-- 查询品牌下的主题 -->
+ 	<select 	id="searchByBrandname"		parameterType="string"	resultType="com.shangtheme.client.entity.Theme" >
+ 		SELECT	T.t_id,T.t_themename,T.t_picpath
+		  FROM    theme T
+			JOIN 	brand B
+			  ON 	T.b_id = B.b_id
+		WHERE   B.b_enname = #{enname}
+		    AND    T.t_status = 0
+ 	</select>
+ 
+ </mapper>

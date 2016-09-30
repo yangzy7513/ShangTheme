@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.shangtheme.client.dao.CollectionDao">
+ 	
+ 	<!-- 插入收藏 -->
+ 	<insert id="doCollection" parameterType="com.shangtheme.client.entity.Collection">
+ 		INSERT INTO collection
+		 				(c_createtime,
+		 				s_id,
+		 				t_id)
+		 				VALUES
+		 				(
+		 				#{c_createtime},
+		 				#{s_id},
+		 				#{t_id})
+ 	</insert>
+ 	
+ 	<delete id="removeCollection" parameterType="com.shangtheme.client.entity.Collection">
+ 		DELETE FROM collection
+		WHERE t_id = #{t_id}
+		AND s_id = #{s_id}
+ 	</delete>
+ 	
+ 	<!-- 查询参数主题收藏数量 -->
+ 	<select id="checkCollection" parameterType="com.shangtheme.client.entity.Collection" resultType="int">
+ 		SELECT COUNT(t_id)
+ 		FROM collection 
+ 		WHERE s_id = #{s_id}
+ 		AND t_id = #{t_id}
+ 	</select>
+ 	
+ 	<!-- 查询收藏 -->
+ 	<select id="getCollection" parameterType="int" resultType="map">
+ 		SELECT T.t_themename , T.t_picpath
+ 		FROM theme T
+ 		JOIN collection C
+ 		on T.t_id = C.t_id
+ 		WHERE s_id = #{s_id}
+ 		ORDER BY C.c_createtime  DESC
+ 	</select>
+ 	
+ 	<select id="selectCollectionBySuserid" parameterType="int" resultType="map">
+ 		SELECT  t.t_id ,
+			 		  t.t_themename,
+			   		  t.t_picpath
+	    FROM theme t
+	    JOIN collection c
+	    ON t.t_id = c.t_id
+		WHERE c.s_id = #{s_id}
+		ORDER BY c.c_createtime DESC
+ 	</select>
+ 	
+ 	<!-- 收藏结果总行数 -->
+ 	<select id="getRowCount" parameterType="int" resultType="int">
+ 		SELECT  COUNT(s_id)
+ 		  FROM  collection 
+ 		WHERE	s_id = #{s_id}
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ </mapper>

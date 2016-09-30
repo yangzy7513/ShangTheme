@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.shangtheme.client.dao.OrderDao">
+ 	
+ 	<!-- 查询订单是否存在 -->
+ 	<select id="findShop" parameterType="com.shangtheme.client.entity.Order" resultType="com.shangtheme.client.entity.Order">
+ 		SELECT * 
+		FROM `order`
+		WHERE s_id = #{s_id}
+		AND   t_id = #{t_id}
+ 	</select>
+ 	
+ 	<!-- 加入购物车 -->
+ 	<insert id="addShopCart" parameterType="com.shangtheme.client.entity.Order">
+ 		INSERT INTO `order`
+ 		(
+ 			s_id,
+ 			t_id,
+ 			o_createtime
+ 		)
+ 		VALUES
+ 		(
+ 			#{s_id},
+ 			#{t_id},
+ 			#{o_createtime}
+ 		)
+ 	</insert>
+ 	
+ 	<!-- 查询用户订单表 -->
+ 	<select id="findOrderByUserId" parameterType="int" resultType="map">
+ 		SELECT o.o_id,t.t_id,t.t_themename,t.t_author,b.b_brandname,b.b_enname,t.t_firmware,t.t_price,t.t_discount,t.t_status,t.t_vip
+			  FROM theme t 
+		JOIN  `order` o on t.t_id = o.t_id
+		JOIN  brand b on b.b_id = t.b_id 
+		WHERE o.s_id =  #{s_id}
+		ORDER BY o.o_createtime DESC
+ 	</select>
+ 	
+ 	<!-- 删除订单根据订单ID -->
+ 	<delete id="delOrderById" parameterType="com.shangtheme.client.entity.Order">
+ 		DELETE FROM `order`
+ 		WHERE  t_id = #{t_id}
+ 		AND    s_id = #{s_id}
+ 	</delete>
+ 	
+ 
+ </mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.shangtheme.client.dao.MyAssetsDao">
+ 	
+ 	
+ 	<!-- 获取资产信息 -->
+ 	<select id="getMyAssets" parameterType="int" resultType="map">
+ 	
+ 		SELECT  T.t_id , T.t_picpath , T.t_themename
+		from  theme T
+		JOIN assets A
+		ON T.t_id = A.t_id
+		WHERE A.s_id = #{s_id}
+		ORDER BY A.a_buydate DESC
+ 	</select>
+ 	
+ 	<!-- 获取数据行数 -->
+ 	<select id="getRowCount" parameterType="int" resultType="int">
+ 		SELECT  COUNT(s_id)
+ 		  FROM  assets 
+ 		WHERE	s_id = #{s_id}
+ 	</select>
+ 	
+ </mapper>

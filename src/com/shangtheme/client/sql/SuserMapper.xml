@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.shangtheme.client.dao.SuserDao">
+ 	
+ 	<!-- 用户注册 -->
+ 	<insert id="register_suser" parameterType="com.shangtheme.client.entity.SuserEntity">
+ 		insert into suser
+ 			(
+ 			s_username, 
+ 			s_password,
+ 			s_headphoto,
+ 			s_checkvip, 
+ 			s_phonenum) 
+ 		values
+ 			(
+ 			#{s_username}, 
+ 			#{s_password},
+ 			#{s_headphoto},
+ 			#{s_checkvip},  
+ 			#{s_phonenum})
+ 	</insert>
+ 	
+ 	<!-- 上传头像 -->
+ 	<update id="uploadHeadPath" parameterType="com.shangtheme.client.entity.SuserEntity">
+ 		update suser
+ 		set s_headphoto = #{s_headphoto}
+ 		where s_id = #{s_id}
+ 	</update>
+ 	
+ 	
+ 	<!-- 通过用户名查询 -->
+ 	<select 
+ 			id="findUserByUsername" 
+ 			parameterType="string"
+ 			resultType="com.shangtheme.client.entity.SuserEntity">
+ 		select s_username,s_password,s_checkvip,s_headphoto,s_id
+ 		  from suser
+ 		 where s_username = #{s_username} 			
+ 	</select>
+ 	
+ 	<!-- 查询用户信息 -->
+ 	<select id="findUserById" 
+ 			parameterType="int"
+ 			resultType="com.shangtheme.client.entity.SuserEntity">
+ 		select s_id,s_username,s_headphoto,s_sex,s_birthday,s_checkvip,s_phonenum
+ 			from suser
+ 		where s_id = #{s_id}
+ 	</select>
+ 	
+ 	<!-- 更新用户 -->
+ 	<update id="updateUserById" parameterType="com.shangtheme.client.entity.SuserEntity">
+ 		update suser
+ 			set s_username = #{s_username},
+ 				  s_phonenum = #{s_phonenum},
+ 				  s_sex = #{s_sex},
+ 				  s_birthday = #{s_birthday}
+ 		where s_id = #{s_id}
+ 	</update>
+ 	
+ 	<!-- 手机号获取 -->
+ 	<select 
+ 			id="findUserByPhonenum"
+ 			parameterType="string"
+ 			resultType="com.shangtheme.client.entity.SuserEntity">
+ 		 select s_username,s_password,s_checkvip,s_headphoto,s_id
+ 		   from suser
+ 		 where s_phonenum = #{s_phonenum} 
+ 	
+ 	</select>
+ 	
+ 	<update id="resetPwd" parameterType="com.shangtheme.client.entity.SuserEntity">
+ 		update suser
+ 		set s_password = #{s_password}
+ 		where s_phonenum = #{s_phonenum}
+ 	</update>
+ 	
+ </mapper>

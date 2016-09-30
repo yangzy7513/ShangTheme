@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.shangtheme.client.dao.DBDao">
+ 	
+ 	<!-- 查询DB消息 -->
+ 	<select id="findMsgByCode" parameterType="int" resultType="string">
+ 		select msg from status
+ 		 where code = #{code}
+  		  and  available = 0
+ 	</select>
+ 	
+ 	<!-- 查询最新未读消息 -->
+ 	<select id="findNewLetter" parameterType="int" resultType="map">
+ 		SELECT 	m.msg_id
+		  FROM 	msg m
+		 WHERE 	m.msg_id NOT IN (
+				SELECT u.msg_id 
+				  FROM umsg u 
+				 WHERE u.s_id = #{sid})
+		  AND  m.s_id IN (#{sid},0)
+	 	ORDER BY m.msg_id DESC
+ 	</select>
+ 	
+ 	<!-- 更新用户接收表 -->
+ 	<insert id="updateUmsg" parameterType="com.shangtheme.client.entity.Umsg">
+ 		insert into umsg
+ 		(msg_id,s_id,status)
+ 		values
+ 		(#{msg_id},#{s_id},#{status})
+ 	</insert>
+	
+	<select id="getAllLetter" parameterType="int" resultType="map">
+		SELECT m.msg_id,m.sendname,m.msgtitle,m.msgcontent,m.totime,u.status
+		FROM  msg m
+		JOIN umsg u
+		ON m.msg_id = u.msg_id
+		WHERE u.s_id = #{s_id}
+		AND   u.status IN (0,1)
+		ORDER BY u.status,m.totime DESC
+	</select>
+	
+	<update id="changeToRead" parameterType="com.shangtheme.client.entity.Umsg">
+		UPDATE umsg
+		SET status = 1
+		WHERE msg_id = #{msg_id}
+		AND s_id = #{s_id}
+	</update>
+	 
+ </mapper>
