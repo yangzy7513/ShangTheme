@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+body {
+	background-image: url('images/bg_4.jpg');
+	
+}
+li a{
+	color: white;
+}
+a {
+	cursor: pointer;
+	color:#000;
+}
+
+.header {
+	background-image: url("../../images/bg_2.png");
+	height: 80px;
+	width: 100%;
+}
+div>ul>li {
+	border:3px DarkSlateGray solid;
+	background: #e38d8d ;
+	margin:15px;
+}
+.btn {
+	border:3px DarkSlateGray solid;
+	background: #ddd ;
+}
+tr {
+	background:#fff;
+	border:2px black solid;
+}

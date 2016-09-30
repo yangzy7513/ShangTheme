@@ -1,0 +1,116 @@
+/*======================================================================================================================
+/*  2016-8-21 SUPER-MAN (娌￠敊灏辨槸鎴�
+/=======================================================================================================================
+/* remove rounds from all elements  start*/
+div, input, select, textarea, span, img, table, td, th, p, a, button, ul, li {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+input,button,select,textarea {
+    outline: none;
+}
+a {
+    text-decoration: none;
+}
+a:focus {
+    outline: none !important;
+}
+
+a:hover, a:active {
+    outline: 0 !important;
+}
+
+select:focus {
+    outline: none !important;
+}
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+/* remove rounds from all elements  end*/
+body {
+    background-image: url("../../images/bg_6.jpg");
+    overflow: hidden;
+}
+.header {
+    width: 100%;
+    height: 40px;
+    background-image: url("../../images/bg_2.png");
+}
+.part{
+    width: 660px;
+    height: 400px;
+    margin: 120px auto;
+    background-image: url("../../images/bg_2.png");
+}
+.button {
+    width:660px;
+    margin: 0 auto;
+    position: relative;
+    top: 110px;
+}
+.button>button{
+    width: 300px;
+    color: whitesmoke;
+    background-image: url("../img/bg_1.png");
+    margin: 2px 14px;
+    border: #c5caff 3px solid;
+ }
+.button>button:hover{
+    color: whitesmoke;
+    border: #c5caff 3px solid;
+}
+.button>button.active{
+    color: whitesmoke;
+    background-color: #4252b3;
+}
+label{
+    margin-top: 200px;
+}
+.form-control {
+    float: left;
+    position: relative;
+    left: 30%;
+    top: 70px;
+}
+.form-label{
+    float: left;
+    margin-top: 6px;
+    position: relative;
+    left: 20%;
+    top: 70px;
+}
+.remember {
+    display: block;
+    float: left;
+    margin-left:-14% ;
+    margin-top: -28px;
+}
+.forgot {
+    display: block;
+    float: right;
+    margin-right:18% ;
+    margin-top: -30px;
+}
+form div label a {
+    color: #333;
+}
+.btn_logIn {
+    width: 200px;
+    float: left;
+    position: absolute;
+    top: 500px;
+    left: 46.6%;
+}
+.form {
+    float: left;
+    margin-top: -10px;
+    margin-bottom: 40px;
+    margin-left: 14%;
+}
+.btn-part2 {
+    margin-top: 220px;
+    margin-left:-5px;
+}

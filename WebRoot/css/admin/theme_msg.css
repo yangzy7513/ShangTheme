@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+body {
+	background-image: url('images/bg_4.jpg');
+}
+li a{
+	color: white;
+}
+a {
+	color:#000;
+}
+
+.header {
+	background-image: url("../../images/bg_2.png");
+	height: 60px;
+	width: 100%;
+}
+
+.btn {
+	border:3px DarkSlateGray solid;
+}
+table {
+	margin-left:-10px;
+	margin-top:0;
+	padding: 10px black doublel;
+}
+table tr {
+	border:none;
+}
+input {
+	background-color : #f8f8f8;
+}
