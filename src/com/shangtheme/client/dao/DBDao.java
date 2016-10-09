@@ -38,7 +38,7 @@ public interface DBDao {
 	public void updateUmsg(Umsg umsg);
 	
 	/**
-	 * 获取多有站内信
+	 * 获取站内信
 	 * @param s_id
 	 * @return
 	 */
