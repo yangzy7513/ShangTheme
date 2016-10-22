@@ -3,13 +3,13 @@ package com.shangtheme.client.entity;
 import java.io.Serializable;
 
 /**
- *@类名：Theme
- *@作者: yangzy
- *@功能：主题信息类
- *@详细：描述主题信息,对应DB字段。
- *@版本：1.0
- *@日期：2016-09-03
- *@说明：
+ * 类名：Theme
+ * 作者: yangzy
+ * 功能：主题信息类
+ * 详细：描述主题信息,对应DB字段。
+ * 版本：1.0
+ * 日期：2016-09-03
+ * 说明：
  *	         不建议在此类拓展新功能。
  */
 public class Theme implements Serializable {

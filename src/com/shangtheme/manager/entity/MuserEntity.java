@@ -4,16 +4,21 @@ import java.io.Serializable;
 
 
 /**
- *@类名：MuserEntity
- *@作者: cc
- *@功能：管理员信息类
- *@详细：描述用户信息,对应DB字段。
- *@版本：1.0
- *@日期：2016-09-14
- *@说明：
+ * 类名：MuserEntity
+ * 作者: cc
+ * 功能：管理员信息类
+ * 详细：描述用户信息,对应DB字段。
+ * 版本：1.0
+ * 日期：2016-09-14
+ * 说明：
  */
 public class MuserEntity implements Serializable {
 	
+	/**
+	 * 版本
+	 */
+	private static final long serialVersionUID = 20160815L;
+
 	/**
 	 *  管理员账号
 	 */

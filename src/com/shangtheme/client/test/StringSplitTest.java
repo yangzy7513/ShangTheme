@@ -7,6 +7,7 @@ public class StringSplitTest {
 	public static void main(String[] args) {
 		String str = "你是我最爱的人ui";
 		
+		
 //		for(String s:CommonUtil.subString(str, 2)){
 //			System.out.println(s);
 //		}

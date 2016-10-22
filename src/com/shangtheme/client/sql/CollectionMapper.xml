@@ -40,7 +40,7 @@
  		ORDER BY C.c_createtime  DESC
  	</select>
  	
- 	<select id="selectCollectionBySuserid" parameterType="int" resultType="map">
+ 	<select id="selectCollectionBySuserid" parameterType="int" resultType="com.shangtheme.client.entity.Theme">
  		SELECT  t.t_id ,
 			 		  t.t_themename,
 			   		  t.t_picpath
@@ -58,17 +58,38 @@
  		WHERE	s_id = #{s_id}
  	</select>
  	
+	<select id="getSampleCustomer"  parameterType="int"  resultType="map">
+ 		SELECT s_id,GROUP_CONCAT(t_id) AS love
+		FROM collection
+		WHERE s_id = #{id}
+		GROUP BY s_id
+		UNION
+ 		SELECT* FROM(
+ 		SELECT c.s_id, c.love
+		FROM 
+				  ( SELECT s_id, GROUP_CONCAT(t_id) AS love
+		 		  	FROM collection
+		            GROUP BY s_id ) AS c
+		JOIN
+				  (SELECT s_id FROM suser 
+				   ORDER BY RAND() LIMIT 0,6 ) AS r
+		ON c.s_id = r.s_id
+		<![CDATA[WHERE c.s_id <> ]]> #{id} 
+		ORDER BY c.s_id ) AS sample	
+ 	</select> 
  	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
+ 	<select id="recommendByCol" resultType="map">
+ 		SELECT t_id,t_themename,t_picpath
+		FROM theme
+		WHERE t_id IN
+		<foreach collection="list" item="themeid" index="index"
+				open="(" close=")" separator=",">
+				#{themeid}
+		</foreach>
+		AND t_status = 0
+		ORDER BY t_registerdate DESC
+		LIMIT 2
+ 	</select>
  	
  	
  	

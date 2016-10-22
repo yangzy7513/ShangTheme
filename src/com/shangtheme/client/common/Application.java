@@ -2,12 +2,13 @@ package com.shangtheme.client.common;
 
 import java.io.IOException;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+
+import org.apache.commons.httpclient.HttpClient;
 
 /**
  *@类名：Application
@@ -19,13 +20,13 @@ import org.springframework.context.event.ContextRefreshedEvent;
  *@说明：
  *	         可拓展并在此处说明.
  */
-public class Application implements ApplicationListener<ContextRefreshedEvent>{
-	
+public class Application implements ApplicationListener<ContextRefreshedEvent> {
+
 	private static final String URL = "http://localhost:8080/ShangTheme/doRecommendation.do";
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		System.out.println("当前时间："+CommonUtil.getDate("yyyy年MM月dd日  HH:mm:ss"));
+		System.out.println("当前时间：" + CommonUtil.getDate("yyyy年MM月dd日  HH:mm:ss"));
 		
 		if (event.getApplicationContext().getParent() == null) {
 			HttpClient client = new HttpClient();
@@ -34,16 +35,11 @@ public class Application implements ApplicationListener<ContextRefreshedEvent>{
 			try {
 				//TODO
 				client.executeMethod(method);
-			} catch (HttpException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (HttpException httpException) {
+				httpException.printStackTrace();
+			} catch (IOException ioException) {
+				ioException.printStackTrace();
 			}
-			
 		}
-		
 	}
-	
-	
-
 }

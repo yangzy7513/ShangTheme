@@ -4,13 +4,13 @@ package com.shangtheme.manager.dao;
 import com.shangtheme.manager.entity.MuserEntity;
 
 /**
- *@类名：LogInAndRegisterDao
- *@作者: CC
- *@功能：数据
- *@详细：
- *@版本：1.0
- *@日期：2016-9-11
- *@说明：
+ * 类名：LogInAndRegisterDao
+ * 作者: CC
+ * 功能：数据
+ * 详细：
+ * 版本：1.0
+ * 日期：2016-9-11
+ * 说明：
  *	          待補充
  */
 public interface LogInAndRegisterDao {

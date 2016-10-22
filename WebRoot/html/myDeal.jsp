@@ -72,7 +72,7 @@ tr>td>a{
 		</c:otherwise>
 	</c:choose>
 	
-	<script type="text/javascript" src="ajax/myDeal.js"></script>
+	<script type="text/javascript" src="../ajax/myDeal.js"></script>
 	<%@ include file="common/materialMenu.jsp"%>
 	<%-- <%@ include file="common/footer.jsp"%> --%>
 </body>

@@ -30,24 +30,11 @@
 
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner" role="listbox">
-			<div class="item active">
-				<a href="http://www.baidu.com" target="_blank"><img src="images/slider/bg1.jpg" alt="壁纸1"></a>
-				<div class="carousel-caption">
-					<h1 class="animated fadeInDown">瞑 想</h1>
-					<p class="animated fadeInUp">目を閉じて あなたは別の世界を見て</p>
-				</div>
+			<c:forEach items="${homeinfo.adList}" var="item" varStatus="status">
+			<div class="item ${status.index == 0 ? 'active' : ''} ">
+				<a href="http://${item.ad_href }" target="_blank"><img src="http://localhost:8080${pageContext.request.contextPath}/${ item.picpath}"></a>
 			</div>
-			<div class="item">
-				<a href="http://www.baidu.com" target="_blank"><img src="images/slider/bg2.jpg" alt="壁纸2"></a>
-				<div class="carousel-caption">
-					<h1 class="animated fadeInDown">Oh My girl</h1>
-					<p class="animated fadeInUp">Good Night.</p>
-				</div>
-			</div>
-			<div class="item">
-				<a href="http://www.baidu.com" target="_blank"><img src="images/slider/bg3.jpg" alt="壁纸3"></a>
-				<div class="carousel-caption">...</div>
-			</div>
+			</c:forEach>
 		</div>
 
 		<!-- Controls -->
@@ -65,7 +52,7 @@
 		<h5 style="margin-left: 30px;">* 新 品 推 荐 *</h5>
 		<section id="portfolio" class="container" style="padding-top: 20px;">
 			<ul class="portfolio-items d-f apps">
-				<c:forEach items="${Recommendation}" var="item" varStatus="status">
+				<c:forEach items="${homeinfo.themresult}" var="item" varStatus="status">
 					<li class="portfolio-item">
 						<div class="item-inner">
 							<img src="${pageContext.request.contextPath}/${item.t_picpath.split('&')[0]}"

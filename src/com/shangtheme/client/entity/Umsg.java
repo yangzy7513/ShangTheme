@@ -3,13 +3,13 @@ package com.shangtheme.client.entity;
 import java.io.Serializable;
 
 /**
- *@类名：Umsg
- *@作者: yangzy
- *@功能：用户已阅读的信息
- *@详细：描述用户已阅读的,对应DB字段。
- *@版本：1.0
- *@日期：2016-09-11
- *@说明：
+ * 类名：Umsg
+ * 作者: yangzy
+ * 功能：用户已阅读的信息
+ * 详细：描述用户已阅读的,对应DB字段。
+ * 版本：1.0
+ * 日期：2016-09-11
+ * 说明：
  *	         不建议在此类拓展新功能。
  */
 public class Umsg implements Serializable{

@@ -1,5 +1,7 @@
-	
-  <%--共同样式 --%>
+  <%--
+  		所有画面共用的css & js文件
+   --%>	
+   
   <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/css/font-awesome.min.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
@@ -14,6 +16,7 @@
   <script src="${pageContext.request.contextPath}/js/util.js"></script>
   <script src="${pageContext.request.contextPath}/ajax/login.js"></script>
   <script src="${pageContext.request.contextPath}/ajax/register.js"></script>
+  
   <!-- goeasy消息推送 -->
   <script type="text/javascript" src="https://cdn.goeasy.io/goeasy.js"></script>
   

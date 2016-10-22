@@ -3,13 +3,13 @@ package com.shangtheme.client.entity;
 import java.io.Serializable;
 
 /**
- *@类名：ReturnStatus
- *@作者: yangzy
- *@功能：状态信息类
- *@详细：返回前台的json封装为此类,对应DB字段。
- *@版本：1.0
- *@日期：2016-09-03
- *@说明：
+ * 类名：ReturnStatus
+ * 作者: yangzy
+ * 功能：状态信息类
+ * 详细：返回前台的json封装为此类,对应DB字段。
+ * 版本：1.0
+ * 日期：2016-09-03
+ * 说明：
  *	         不建议在此类拓展新功能。
  */
 public class ReturnStatus implements Serializable{
@@ -33,6 +33,22 @@ public class ReturnStatus implements Serializable{
 	 */
 	private Object data;
 	
+	public ReturnStatus(){
+		super();
+	}
+	
+	
+	public ReturnStatus(int status, String msg) {
+		super();
+		this.status = status;
+		this.msg = msg;
+	}
+	public ReturnStatus(int status, String msg, Object data) {
+		super();
+		this.status = status;
+		this.msg = msg;
+		this.data = data;
+	}
 	/************getter and setter****************/
 	
 	public int getStatus() {

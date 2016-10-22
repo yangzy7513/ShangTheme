@@ -10,6 +10,14 @@ var checkboxAry = document.getElementsByName("theme");
  */
 window.onload = function() {
 	$.post(path + "showtheme.do?pageNum=1");
+	
+	$('tbody tr').each(function(){
+		var status = $(this).find('td').eq(2).html();
+		if (status == '下架') {
+			$(this).find('td').css("background","red");
+			$(this).find('td').eq(8).empty();
+		}
+	});
 };
 
 /** 全选实现

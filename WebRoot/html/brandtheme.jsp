@@ -9,66 +9,43 @@
 	<title>详 细 页 面</title>
   	<%@include file="common/link_js.jsp" %>
   	<script src="http://cdn.bootcss.com/stickyfill/1.1.4/stickyfill.min.js"></script>
-  	<script type="text/javascript">
-  		//window.setInterval(function(){
-  			//var height =  $(document).scrollTop();
-  		//	if(height >= 507){
-  		//	}else{
-  		//	}
-  	//	}, 200); 
-  		
-  	</script>
   	
 </head>
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 <%@include file="common/header.jsp"%>
-<div class="container-fluid" style="margin-top:40px  ;background-color:#2196F3;color:#fff;height:500px;" id="er">
-  <h1>Scrollspy & Affix Example</h1>
-  <h3>Fixed vertical sidenav on scroll</h3>
-  <p>Scroll this page to see how the navbar behaves with data-spy="affix" and data-spy="scrollspy".</p>
-  <p>The left menu sticks the page after you have scrolled a specified amount of pixels, and the links in the menu are automatically updated based on scroll position.</p>
+<div class="container" style="margin-top:40px  ;background-color:#2196F3;color:#fff;height:500px;" id="er">
+	<div class="row" style="padding: 10px 20px;">
+		<h1>${brandtheme.brandinfo.b_company }</h1>
+  		<h3>成立时间:${brandtheme.brandinfo.b_registetime }</h3>
+ 		<p>简介:${brandtheme.brandinfo.b_briefintroduce }</p>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<c:forEach items="${brandtheme.themeList }" var="item" varStatus="status">
+				<div class="col-md-4">
+					<div class="thumbnail" style="background: #66FFFF;">
+						<img src="${pageContext.request.contextPath}/${item.t_picpath.split('&')[0]}" width="60%"  height="50px;"/>
+						<div class="caption">
+							<h3 style="text-align: center;">
+								TOP:${status.index+1 }
+								${item.t_themename }
+							</h3>
+							<p style="text-indent: 2em;">
+								${item.t_abstract }
+							</p>
+							<p style="text-align: center;">
+								<a class="btn btn-primary" href="../html/detail.jsp?id=${item.t_id }">抢</a> 
+							</p>
+						</div>
+					</div>
+				</div>
+		      </c:forEach>
+			
+			</div>
+		</div>
+	</div>
 </div>
-<div class="container">
-  <div class="row">
-    <nav class="col-sm-4" id="myScrollspy"> 
-      <ul class="nav nav-pills nav-stacked"  data-spy="affix" data-offset-top="2000"  data-offset-bottom="105">
-        <li><a href="#section1">Section 1</a></li>
-        <li><a href="#section2">Section 2</a></li>
-        <li><a href="#section3">Section 3</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#section41">Section 4-1</a></li>
-            <li><a href="#section42">Section 4-2</a></li>                     
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <div class="col-sm-8 ">
-      <div id="section1">    
-        <h1>Section 1</h1>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-      <div id="section2"> 
-        <h1>Section 2</h1>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>        
-      <div id="section3">         
-        <h1>Section 3</h1>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-      <div id="section41">         
-        <h1>Section 4-1</h1>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>      
-      <div id="section42">         
-        <h1>Section 4-2</h1>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-    </div>
-  </div>
-</div>
-
 </body>
 
 </html>

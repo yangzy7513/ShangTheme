@@ -3,14 +3,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
-<link href="css/materialMenu.min.css" rel="stylesheet">
-<script type="text/javascript" src="js/materialMenu.min.js"></script>
+<link href="../css/materialMenu.min.css" rel="stylesheet">
+<script type="text/javascript" src="../js/materialMenu.min.js"></script>
 
 <button id="mm-menu-toggle" class="mm-menu-toggle"
 	style="z-index: 999999;top:100px;">Toggle Menu</button>
 <nav id="mm-menu" class="mm-menu">
 	<div class="mm-menu__header">
-		<img class="headPhoto img-circle" src="${suser.s_headphoto}"
+		<img class="headPhoto img-circle" src="../${suser.s_headphoto}"
 			style="margin-left:110px; margin-top:100px; width:80px;"
 			id="headPhoto2" />
 	</div>

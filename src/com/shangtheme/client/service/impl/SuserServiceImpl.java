@@ -4,6 +4,7 @@ package com.shangtheme.client.service.impl;
 import javax.annotation.Resource;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.shangtheme.client.common.CommonUtil;
@@ -15,17 +16,22 @@ import com.shangtheme.client.entity.SuserEntity;
 import com.shangtheme.client.service.SuserService;
 
 /**
- *@类名：SuserServiceImpl
- *@作者: yangzy
- *@功能：用户管理服务接口实现类
- *@详细：此类进行详细获取数据的过程
- *@版本：1.0
- *@日期：2016-8-14
- *@说明：
+ * 类名：SuserServiceImpl
+ * 作者: yangzy
+ * 功能：用户管理服务接口实现类
+ * 详细：此类进行详细获取数据的过程
+ * 版本：1.0
+ * 日期：2016-8-14
+ * 说明：
  *	         如需拓展功能，务必先在SuserService中声明.
  */
 @Service
 public class SuserServiceImpl implements SuserService {
+	
+	/**
+	 * log4j日志
+	 */
+	private static Logger logger = Logger.getLogger(SuserServiceImpl.class);
 	
 	@Resource
 	private SuserDao suserDao;
@@ -101,7 +107,7 @@ public class SuserServiceImpl implements SuserService {
 		suser.setS_password(DigestUtils.md5Hex(password));
 		//会员默认未开启
 		suser.setS_checkvip(0);
-		suser.setS_headphoto("database/head/default");
+		suser.setS_headphoto(CommonUtil.DEFAULTHEADPATH);
 		suser.setS_phonenum(CommonUtil.encodeBase64(phonenum));
 		try {
 			suserDao.register_suser(suser);
@@ -109,9 +115,9 @@ public class SuserServiceImpl implements SuserService {
 			status.setMsg("注册"+DBMsgUtil.getStatusMsgByCode(0));
 			return status;
 		} catch (Exception e) {
+			logger.error("注册系统异常>>Error code:501", e);
 			status.setStatus(501);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(501));
-			e.printStackTrace();
 			return status;
 		}
 		
@@ -129,7 +135,7 @@ public class SuserServiceImpl implements SuserService {
 			status.setStatus(0);
 			return status;
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("注册系统异常>>Error code:306", e);
 			status.setStatus(306);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(306));
 			return status;
@@ -159,7 +165,7 @@ public class SuserServiceImpl implements SuserService {
 			return status;
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("注册系统异常>>Error code:306", e);
 			status.setStatus(306);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(306));
 			return status;

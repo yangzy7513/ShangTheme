@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -35,6 +36,11 @@ import com.shangtheme.client.entity.ReturnStatus;
  */
 @Controller
 public class AuthCodeController {
+	
+	/**
+	 * log4j日志
+	 */
+	private static Logger logger = Logger.getLogger(AuthCodeController.class);
 	
 	@Resource
 	private SuserDao suserDao;
@@ -97,7 +103,7 @@ public class AuthCodeController {
 						
 			//验证码发送成功场合,将验证码存入session等待验证
 			 if("2".equals(code)){
-				System.out.println("短信提交成功");
+				logger.info("短信提交成功");
 				final HttpSession session = request.getSession();
 				session.setAttribute("mobile_code", mobile_code);
 				//创建定时器销毁session中的验证码
@@ -113,7 +119,7 @@ public class AuthCodeController {
 			}			
 				 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("短信平台异常>>"+e.getMessage(), e);
 		} 
 	}
 	

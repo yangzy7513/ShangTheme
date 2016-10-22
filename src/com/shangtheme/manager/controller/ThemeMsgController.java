@@ -2,7 +2,6 @@ package com.shangtheme.manager.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,25 +22,29 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.shangtheme.client.common.CommonUtil;
 import com.shangtheme.client.common.DBMsgUtil;
-import com.shangtheme.client.entity.Brand;
 import com.shangtheme.client.entity.ReturnStatus;
 import com.shangtheme.client.entity.Theme;
 import com.shangtheme.manager.dao.ThemeMsgDao;
 import com.shangtheme.manager.service.ThemeMsgService;
 
 /**
- *@类名：ThemeMsgController
- *@作者: CC
- *@功能：主題管理
- *@详细：詳細管理主題。
- *@版本：1.0
- *@日期：2016-9-17
- *@说明：
+ * 类名：ThemeMsgController
+ * 作者: CC
+ * 功能：主題管理
+ * 详细：詳細管理主題。
+ * 版本：1.0
+ * 日期：2016-9-17
+ * 说明：
  *	        可拓展并在此处说明.      
  */
 @Controller
 public class ThemeMsgController {
 
+	/**
+	 * log4j日志
+	 */
+	private static Logger logger = Logger.getLogger(ThemeMsgController.class);
+	
 	@Resource
 	private ThemeMsgService themeMsgService;
 	@Resource
@@ -76,25 +80,18 @@ public class ThemeMsgController {
 			HttpServletResponse response,
 			HttpSession session) throws IOException {
 		
-		int b_id = 1001;
-		
-		if (brand.equals("小米")) {
-			b_id = 1001;
-		}
-		
 		Theme theme = new Theme();
 		//
 		List<String> Path = (List<String>) session.getAttribute("path");
 		String downloadPath = Path.get(0);
 		String picPath = Path.get(1) + "&"+ Path.get(2) + "&"+ Path.get(3)+ "&" +Path.get(4);
-		System.out.println(downloadPath);
 		theme.setT_themename(themeName);
 		theme.setT_author(author);
 		theme.setT_price(price);
 		theme.setT_discount(discount);
 		theme.setT_vip(vip);
 		theme.setT_status(status);
-		theme.setB_id(b_id);
+		theme.setB_id(Integer.parseInt(brand));
 		theme.setT_picpath(picPath);
 		theme.setT_firmware(firmware);
 		theme.setT_category(category);
@@ -153,7 +150,8 @@ public class ThemeMsgController {
 				status.setStatus(0);
 				status.setMsg("上传"+DBMsgUtil.getStatusMsgByCode(0));
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error("主题图片上传异常:Error Code306" , e);
+				file.delete();
 				status.setStatus(306);
 				status.setMsg(DBMsgUtil.getStatusMsgByCode(306));
 			}

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.shangtheme.client.common.CommonUtil;
@@ -15,18 +16,24 @@ import com.shangtheme.client.entity.ReturnStatus;
 import com.shangtheme.client.entity.SuserEntity;
 import com.shangtheme.client.service.OrderService;
 /**
- *@类名：OrderServiceImpl
- *@作者: yangzy
- *@功能：订单管理服务接口实现类
- *@详细：此类进行详细获取数据的过程
- *@版本：1.0
- *@日期：2016-8-14
- *@说明：
+ * 类名：OrderServiceImpl
+ * 作者: yangzy
+ * 功能：订单管理服务接口实现类
+ * 详细：此类进行详细获取数据的过程
+ * 版本：1.0
+ * 日期：2016-8-14
+ * 说明：
  *	         如需拓展功能，务必先在OrderService中声明.
  */
 
 @Service
 public class OrderServiceImpl implements OrderService {
+	
+	/**
+	 * log4j日志
+	 */
+	private static Logger logger = Logger.getLogger(OrderServiceImpl.class);
+	
 	
 	@Resource
 	private OrderDao orderDao;
@@ -43,6 +50,7 @@ public class OrderServiceImpl implements OrderService {
 			return status;
 			
 		} catch (Exception e) {
+			logger.error("获取订单系统异常>>Error code:306", e);
 			status.setStatus(306);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(306));
 			return status;
@@ -62,6 +70,7 @@ public class OrderServiceImpl implements OrderService {
 			status.setMsg("删除"+DBMsgUtil.getStatusMsgByCode(0));
 			return status;
 		} catch (Exception e) {
+			logger.error("删除订单系统异常>>Error code:309", e);
 			status.setStatus(309);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(309));
 			return status;
@@ -95,6 +104,7 @@ public class OrderServiceImpl implements OrderService {
 			status.setMsg("收藏"+DBMsgUtil.getStatusMsgByCode(0));
 			return status;
 		} catch (Exception e) {
+			logger.error("创建订单系统异常>>Error code:501", e);
 			status.setStatus(501);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(501));
 			return status;

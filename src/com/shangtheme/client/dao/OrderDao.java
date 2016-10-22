@@ -6,13 +6,13 @@ import java.util.Map;
 import com.shangtheme.client.entity.Order;
 
 /**
- *@类名：OrderDao
- *@作者: yangzy
- *@功能：DB-订单数据
- *@详细：连接DB,获取数据。
- *@版本：1.0
- *@日期：2016-9-3
- *@说明：
+ * 类名：OrderDao
+ * 作者: yangzy
+ * 功能：DB-订单数据
+ * 详细：连接DB,获取数据。
+ * 版本：1.0
+ * 日期：2016-9-3
+ * 说明：
  *	          对应OrderMapper.xml.
  */
 public interface OrderDao {
@@ -35,11 +35,10 @@ public interface OrderDao {
 	 * @return
 	 */
 	public List<Map<String, Object>> findOrderByUserId(int id);
-	
-	
+
 	/**
 	 * 根据订单表ID，删除单条订单数据
-	 * @param id
+	 * @param order
 	 */
 	public void delOrderById(Order order);
 	

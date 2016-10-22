@@ -11,4 +11,28 @@
 		WHERE   t_status = 0 
 		ORDER BY  t_registerdate DESC LIMIT 0,8
  	</select>
- </mapper>
+ 	
+ 	<insert id="registAd" parameterType="com.shangtheme.client.entity.Ad">
+ 	INSERT INTO ad
+						(ad_href,
+						picpath,
+						registtime)
+	VALUES(
+					#{ad_href},
+					#{picpath},
+					#{registtime}
+	);
+  </insert>
+	
+  <delete id="emptyAd">
+  		DELETE FROM ad
+  </delete>
+	
+	<select id="getCarouselAdMsg" resultType="map">
+		SELECT ad_href,picpath
+		FROM ad
+	</select>
+	
+</mapper>
+ 
+ 

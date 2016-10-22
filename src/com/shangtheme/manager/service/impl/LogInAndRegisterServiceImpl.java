@@ -3,28 +3,34 @@ package com.shangtheme.manager.service.impl;
 import javax.annotation.Resource;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.shangtheme.client.common.CommonUtil;
 import com.shangtheme.client.common.DBMsgUtil;
 import com.shangtheme.client.entity.ReturnStatus;
+import com.shangtheme.manager.controller.ADController;
 import com.shangtheme.manager.dao.LogInAndRegisterDao;
 import com.shangtheme.manager.entity.MuserEntity;
 import com.shangtheme.manager.service.LogInAndRegisterService;
 
 /**
- *@类名：ColletionServiceImpl
- *@作者: CC
- *@功能：登陆、注册访问层
- *@详细：管理员的登陆、注册。
- *@版本：1.0
- *@日期：2016-09-10
- *@说明：
+ * 类名：ColletionServiceImpl
+ * 作者: CC
+ * 功能：登陆、注册访问层
+ * 详细：管理员的登陆、注册。
+ * 版本：1.0
+ * 日期：2016-09-10
+ * 说明：
  *
  */
 @Service
 public class LogInAndRegisterServiceImpl implements LogInAndRegisterService {
 
+	/**
+	 * log4j日志
+	 */
+	private static Logger logger = Logger.getLogger(LogInAndRegisterServiceImpl.class);
+	
 	@Resource
 	private LogInAndRegisterDao logInAndRegisterDao;
 	
@@ -45,6 +51,7 @@ public class LogInAndRegisterServiceImpl implements LogInAndRegisterService {
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(0));
 			status.setData(count);
 		} catch (Exception e) {
+			logger.error("管理平台用户名检查异常:Error Code501" , e);
 			status.setStatus(501);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(501));
 		}
@@ -72,6 +79,7 @@ public class LogInAndRegisterServiceImpl implements LogInAndRegisterService {
 			status.setStatus(0);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(0));
 		} catch (Exception e) {
+			logger.error("管理平台注册异常:Error Code501" , e);
 			status.setStatus(501);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(501));
 		}
@@ -100,6 +108,7 @@ public class LogInAndRegisterServiceImpl implements LogInAndRegisterService {
 				status.setData(1);
 			}
 		} catch (Exception e) {
+			logger.error("管理平台登录异常:Error Code501" , e);
 			status.setStatus(501);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(501));
 		}

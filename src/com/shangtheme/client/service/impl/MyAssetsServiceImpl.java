@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -16,18 +17,23 @@ import com.shangtheme.client.entity.ReturnStatus;
 import com.shangtheme.client.service.MyAssetsService;
 
 /**
- * @类名：MyAssetsServiceImpl
- * @作者: CC
- * @功能：资产信息服务接口实现类
- * @详细：此类进行详细获取数据的过程
- * @版本：1.0
- * @日期：2016-09-07
- * @说明： 如需拓展功能，务必先在MyAssetsService中声明.
+ *  类名：MyAssetsServiceImpl
+ *  作者: CC
+ *  功能：资产信息服务接口实现类
+ *  详细：此类进行详细获取数据的过程
+ *  版本：1.0
+ *  日期：2016-09-07
+ *  说明： 如需拓展功能，务必先在MyAssetsService中声明.
  */
 
 @Service
 public class MyAssetsServiceImpl implements MyAssetsService {
 
+	/**
+	 * log4j日志
+	 */
+	private static Logger logger = Logger.getLogger(MyAssetsServiceImpl.class);
+	
 	@Resource
 	private MyAssetsDao myAssetsDao;
 
@@ -56,6 +62,7 @@ public class MyAssetsServiceImpl implements MyAssetsService {
 			status.setData(result);
 			return status; 
 		} catch (Exception e) {
+			logger.error("获取资产信息系统异常>>Error code:501", e);
 			status.setStatus(501);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(501));
 			return status;

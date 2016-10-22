@@ -17,13 +17,13 @@ import com.shangtheme.client.entity.ReturnStatus;
 import com.shangtheme.manager.service.LogInAndRegisterService;
 
 /**
- *@类名：LoginAndRegisterController
- *@作者: CC
- *@功能：登陆、注册访问层
- *@详细：管理员的登陆、注册。
- *@版本：1.0
- *@日期：2016-9-11
- *@说明：
+ * 类名：LoginAndRegisterController
+ * 作者: CC
+ * 功能：登陆、注册访问层
+ * 详细：管理员的登陆、注册。
+ * 版本：1.0
+ * 日期：2016-9-11
+ * 说明：
  *	        可拓展并在此处说明.      
  */
 @Controller
@@ -57,14 +57,17 @@ public class LoginAndRegisterController {
 			response.sendRedirect("papapa.jsp");
 		}
 	}
-	
-	
-	/** 登陆执行
-	 * @param user
-	 * @param password
-	 * @return
-	 * @throws IOException 
-	 * @throws ServletException 
+
+
+	/**
+	 * 登陆执行
+	 * @param userName
+	 * @param pWords
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @throws IOException
+	 * @throws ServletException
 	 */
 	@RequestMapping("/dologin.do")
 	public void dologin(String userName, 
@@ -93,7 +96,7 @@ public class LoginAndRegisterController {
 	 */
 	@RequestMapping("/managerLogOut.do")
 	private void managerExit (HttpSession session , HttpServletResponse response ,HttpServletRequest request) throws IOException{
-		request.getSession().removeAttribute("suser");
+		request.getSession().removeAttribute("user");
 		response.sendRedirect("papapa.jsp");
 	}
 }

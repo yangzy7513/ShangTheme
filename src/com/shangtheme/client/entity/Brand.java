@@ -6,13 +6,13 @@ package com.shangtheme.client.entity;
 import java.io.Serializable;
 
 /**
- *@类名：AuthCodeController
- *@作者: yangzy
- *@功能：品牌类
- *@详细：描述品牌的一些基本特性,对应DB字段。
- *@版本：1.0
- *@日期：2016-08-28
- *@说明：
+ * 类名：AuthCodeController
+ * 作者: yangzy
+ * 功能：品牌类
+ * 详细：描述品牌的一些基本特性,对应DB字段。
+ * 版本：1.0
+ * 日期：2016-08-28
+ * 说明：
  *	      不建议在此类拓展新功能。
  */
 public class Brand implements Serializable {

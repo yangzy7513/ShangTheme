@@ -18,12 +18,15 @@
 			t.t_picpath,
 			b.b_brandname
 		<if test="s_id != -1">
-			,COUNT(c_id) AS collecstatus
+			,COUNT(c_id) AS collecstatus,
+			COUNT(a_id) AS buystatus
 		</if>
  			from theme t
 			LEFT JOIN brand b 
 			ON t.b_id = b.b_id
 		<if test="s_id != -1">
+			LEFT JOIN assets a
+			ON a.t_id = t.t_id
 			JOIN collection c
 			ON c.t_id = t.t_id	
 		</if>
@@ -31,16 +34,6 @@
  		<if test="s_id != -1">
 			AND c.s_id = #{s_id}
 		</if>
- 	</select>
- 	
- 	<!-- 判断是否已经购买该主题 -->
- 	<select  id="getThemenews" parameterType="com.shangtheme.client.entity.Assets" resultType="int">
- 		SELECT COUNT(*)
-		FROM theme T
-		JOIN assets A
-		ON A.t_id = T.t_id
-		WHERE s_id = #{s_id}
-		AND A.t_id = #{t_id}
  	</select>
  	
  	<!-- 超级搜索 -->
@@ -57,14 +50,39 @@
 		WHERE 	b_enname = #{enname}
  	</select>
  	
- 	<!-- 查询品牌下的主题 -->
+ 	<!-- 查询品牌下前十下载的主题 -->
  	<select 	id="searchByBrandname"		parameterType="string"	resultType="com.shangtheme.client.entity.Theme" >
- 		SELECT	T.t_id,T.t_themename,T.t_picpath
+ 		SELECT	T.t_id,T.t_themename,T.t_picpath,T.t_abstract
 		  FROM    theme T
 			JOIN 	brand B
 			  ON 	T.b_id = B.b_id
 		WHERE   B.b_enname = #{enname}
-		    AND    T.t_status = 0
+		     AND    T.t_status = 0		
+			ORDER BY T.t_downloadnum DESC
+		LIMIT 0,3
+ 	</select>
+ 	
+ 	<select id="getDownloadPath" parameterType="com.shangtheme.client.entity.Assets"	resultType="string">
+ 		SELECT t.t_downloadpath
+		FROM theme t
+		JOIN assets a
+		ON t.t_id = a.t_id
+		WHERE a.s_id = #{s_id}
+		AND a.t_id = #{t_id};
+		
+		UPDATE theme
+		SET t_downloadnum = t_downloadnum + 1
+		WHERE t_id = #{t_id};
+ 	</select>
+ 	
+ 	<select id="getFreeDownloadPath" parameterType="int"  resultType="string">
+ 	 	SELECT t_downloadpath
+		FROM   theme
+		WHERE t_id = #{t_id};
+		
+		UPDATE theme
+		SET t_downloadnum = t_downloadnum + 1
+		WHERE t_id = #{t_id};
  	</select>
  
  </mapper>

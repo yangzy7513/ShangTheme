@@ -28,7 +28,8 @@ import com.shangtheme.client.service.CollectionService;
  *@日期：2016-9-17
  *@说明：
  *	        可拓展并在此处说明. 
- *			改进了收藏的功能    2016/9/17   yangzy    
+ *			改进了收藏的功能    2016/9/17   yangzy 
+ *			添加猜测用户喜欢API 2016/10/16   yangzy   
  */
 
 @Controller
@@ -49,20 +50,24 @@ public class CollectionController {
 		SuserEntity user = (SuserEntity) session.getAttribute("suser");
 		collectionService.doCollection(collecflag, id, user.getS_id());
 	}
-	
-	
+
+
 	/**
 	 * 分页查询收藏主题
-	 * @param sid 用户id
 	 * @param pageNo
-	 * @param pageSize
+	 * @param request
+	 * @param response
 	 * @return
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@RequestMapping("/getColBySid.do")
 	public @ResponseBody ReturnStatus getCollectionAction(int pageNo, HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();
 		SuserEntity user = (SuserEntity) session.getAttribute("suser");
+		
+		//猜你喜欢
+		List<Theme> guessLikeOnCol =  collectionService.guessCustomlike(user.getS_id());
+		session.setAttribute("guesslike_col", guessLikeOnCol);
 		
 		//获取分页每页数量
 		int PAGESIZE = Integer.parseInt(DBMsgUtil.getStatusMsgByCode(1));

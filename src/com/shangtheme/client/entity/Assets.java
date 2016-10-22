@@ -3,13 +3,13 @@ package com.shangtheme.client.entity;
 import java.io.Serializable;
 
 /**
- *@类名：Assets
- *@作者: yangzy
- *@功能：资产类
- *@详细：描述用户已购买的主题,对应DB字段。
- *@版本：1.0
- *@日期：2016-08-28
- *@说明：
+ * 类名：Assets
+ * 作者: yangzy
+ * 功能：资产类
+ * 详细：描述用户已购买的主题,对应DB字段。
+ * 版本：1.0
+ * 日期：2016-08-28
+ * 说明：
  *	      不建议在此类拓展新功能。
  */
 public class Assets implements Serializable {

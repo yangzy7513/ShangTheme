@@ -3,13 +3,13 @@ package com.shangtheme.client.dao;
 import com.shangtheme.client.entity.SuserEntity;
 
 /**
- *@类名：SuserDao
- *@作者: yangzy
- *@功能：DB-用户数据
- *@详细：连接DB,获取数据。
- *@版本：3.0
- *@日期：2016-9-3
- *@说明：
+ * 类名：SuserDao
+ * 作者: yangzy
+ * 功能：DB-用户数据
+ * 详细：连接DB,获取数据。
+ * 版本：3.0
+ * 日期：2016-9-3
+ * 说明：
  *	          对应SuserMapper.xml.
  */
 public interface SuserDao{

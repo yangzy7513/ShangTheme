@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
-import com.shangtheme.client.common.CommonUtil;
 import com.shangtheme.client.common.DBMsgUtil;
 import com.shangtheme.client.entity.ReturnStatus;
 import com.shangtheme.manager.dao.ThemeDetailDao;
@@ -166,12 +165,11 @@ public class ThemeDetailServiceImpl implements ThemeDetailService {
 		
 		return status;
 	}
-	
+
 	/**
 	 * 獲取主題狀態
-	 * 
-	 * @param buttonId 主題id
-	 * @return 主題狀態
+	 * @param themeId
+	 * @return
 	 */
 	private int getThemeStatus(int themeId) {
 		int themeStatus = themeDetailDao.getThemeStatus(themeId);

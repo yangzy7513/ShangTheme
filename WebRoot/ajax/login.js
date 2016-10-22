@@ -39,7 +39,6 @@ $(function(){
 			if (password.length<6) {
 				var result = confirm("您的密码强度不高，建议您修改密码,是否前往修改密码");
 				if (result==true) {
-					alert(1);
 					window.open("html/reset.jsp");
 				}
 			}

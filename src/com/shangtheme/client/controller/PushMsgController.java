@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,7 @@ import com.shangtheme.client.dao.DBDao;
 import com.shangtheme.client.entity.ReturnStatus;
 import com.shangtheme.client.entity.SuserEntity;
 import com.shangtheme.client.entity.Umsg;
+import com.shangtheme.client.exception.ShHandlerExceptionResolver;
 import com.shangtheme.client.service.StationMsgService;
 
 /**
@@ -36,28 +38,32 @@ import com.shangtheme.client.service.StationMsgService;
 @Controller
 public class PushMsgController {
 	
+	/**
+	 * log4j日志
+	 */
+	private static Logger logger = Logger.getLogger(PushMsgController.class);
+	
 	@Resource
 	private DBDao dbDao;
 	
 	@Resource
 	private StationMsgService msgService;
-	
+
 	/**
 	 * 发送弹幕控制
 	 * @param msg
-	 * @param img
 	 * @param response
 	 * @throws IOException
 	 */
 	@RequestMapping("/pushmsg.do")
-	public void test(String msg, String img, HttpServletResponse response) throws IOException{
+	public void test(String msg, HttpServletResponse response) throws IOException{
 		
 		GoEasy goEasy = new GoEasy("475987c9-e307-4842-89a0-0044306d5694");
 		goEasy.publish("ShangTheme", msg, new PublishListener(){
 
 			@Override
 			public void onFailed(GoEasyError error) {
-				System.err.println("Error code:"+ error.getCode() +"; error content:"+error.getContent()); 
+				logger.error("弹幕系统异常>>Error code:"+ error.getCode() +"; error content:"+error.getContent());
 			}
 			
 		});

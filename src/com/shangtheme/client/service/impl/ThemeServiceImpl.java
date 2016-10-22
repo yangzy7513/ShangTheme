@@ -10,19 +10,18 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.shangtheme.client.dao.ThemeDao;
-import com.shangtheme.client.entity.Assets;
 import com.shangtheme.client.entity.Brand;
 import com.shangtheme.client.entity.Theme;
 import com.shangtheme.client.service.ThemeService;
 
 /**
- *@类名：ThemeServiceImpl
- *@作者: yangzy
- *@功能：主题管理服务接口实现类
- *@详细：此类进行详细获取数据的过程
- *@版本：1.0
- *@日期：2016-9-4
- *@说明：
+ * 类名：ThemeServiceImpl
+ * 作者: yangzy
+ * 功能：主题管理服务接口实现类
+ * 详细：此类进行详细获取数据的过程
+ * 版本：1.0
+ * 日期：2016-9-4
+ * 说明：
  *	         如需拓展功能，务必先在ThemeService中声明.
  */
 @Service
@@ -32,7 +31,7 @@ public class ThemeServiceImpl implements ThemeService {
 	private ThemeDao themeDao;
 	
 	/* 
-	 * 获取主题信息
+	 * 获取主题信息,确定用户对主题的操作状态
 	 */
 	@Override
 	public Map<String, Object> getThemeSer(int id, int sid) {
@@ -41,25 +40,6 @@ public class ThemeServiceImpl implements ThemeService {
 		map.put("s_id", sid);
 		Map<String, Object> resultList = themeDao.getThemeByTid(map);
 		return resultList;
-	}
-
-	/* 
-	 * 显示下载按钮（判断是否已经购买该主题）
-	 */
-	@Override
-	public boolean reCount(int t_id, int s_id) {
-		
-		Assets assets = new Assets();
-		assets.setS_id(s_id);
-		assets.setT_id(t_id);
-		
-		int tCount = themeDao.getThemenews(assets);
-		if (tCount > 0) {
-			return true;
-		}
-		else {
-			return false;
-		}
 	}
 
 	@Override

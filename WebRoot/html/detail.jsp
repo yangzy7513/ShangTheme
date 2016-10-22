@@ -9,17 +9,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
 	<title>详 细 页 面</title>
   	<%@include file="common/link_js.jsp" %>
    	<link rel="stylesheet" type="text/css" href="../css/barrager.css">
-  	<link rel="shortcut icon" href="favicon.ico" type="../images/x-icon" />
   	<script src="../js/jquery.barrager.min.js"></script>
   	<script src="../ajax/sendbarrager.js"></script>
    	<script src="../ajax/detail.js"></script>
  </head>
  
-<body>
+<body style="background-color: #0F9;">
 	<%@ include file="common/header.jsp"%>
 	<div class="container" style="min-height: 700px">
 		<div class="row clearfix">
@@ -28,7 +26,7 @@
 					style="display: block;float: left;margin-left: 220px;margin-top: 80px">
 					<div>
 						<img id="phone_Img" src=""  
-							style="z-index: -1;position: absolute;left: 265px;top:115px;width: 210px;">
+							style="position: absolute;left: 264px;top:132px;width: 210px;">
 						<img src="../images/phone.png" width="260">
 					</div>
 					<div style="margin-top: -260px;margin-left: 260px">
@@ -93,26 +91,14 @@
 					
 					<div id="default">
 					<c:if test="${suser != null}">
-						<ul style="margin-top: 240px;">
-							<%-- 收藏 --%>
-							<!-- <li style="float: left;margin-right: 60px;"><button
-									class="btn btn-info" onclick="doCollection();">收藏</button></li> -->
-							<%-- 加入购物车 --%>
+						<ul style="margin-top: 240px;"  id="btnstatus">
 							<li style="float: left;margin-right: 10px;"><button
 									class="btn btn-success" onclick="addShopCard();">加入购物车</button></li>
-							<%-- 直接购买 --%>
 							<li style="float: left;"><button
 									class="btn btn-danger">直接购买</button></li>
-						</ul>
-					</div>
-					<div id="download" style="display: none;">
-						<ul style="margin-top: 240px;">
-							<%-- 收藏 --%>
-							<li style="float: left;margin-right: 60px;"><button
-									class="btn btn-info" onclick="doCollection();">收 藏</button></li>
-							<%-- 下 载 --%>
 							<li style="float: left;margin-right: 20px;"><button
-									class="btn btn-danger" style="margin-left: 83px;width: 100px;" onclick="download">下 载</button></li>
+									class="btn btn-info btn-lg btn-block" style="margin-left: 83px;" onclick="download();">
+									<i class="icon-cloud-download"></i>下 载</button></li>
 						</ul>
 					</div>
 					</c:if>

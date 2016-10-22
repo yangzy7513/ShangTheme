@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,23 +37,26 @@ import com.shangtheme.client.service.SuserService;
 @Controller
 public class SuserController {
 	
+	/**
+	 * log4j日志
+	 */
+	private static Logger logger = Logger.getLogger(SuserController.class);
+	
 	@Resource
 	private SuserService suserService;
 	
 	@Resource
 	private SuserDao suserDao;
-	
+
 	/**
 	 * 注册
 	 * @param username
 	 * @param password
-	 * @param headphoto
-	 * @param sex
-	 * @param birthday
 	 * @param phonenum
 	 * @param request
+	 * @param response
 	 * @return
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@RequestMapping("/register.do")
 	public @ResponseBody ReturnStatus registerCustomer(String username, String password,
@@ -90,7 +94,7 @@ public class SuserController {
 		//头像名称
 		String name = user.getS_username();
 		//全路径
-		String fileName = headphotoRealPathDir+File.separator+name+".png";
+		String fileName = headphotoRealPathDir+File.separator+name+suffix;
 		File file = new File(fileName);
 		
 		try {
@@ -101,13 +105,13 @@ public class SuserController {
 			status.setMsg("注册"+DBMsgUtil.getStatusMsgByCode(0));
 			return status;
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("用户头像上传异常:Error Code306" , e);
+			file.delete();
 			status.setStatus(306);
 			status.setMsg(DBMsgUtil.getStatusMsgByCode(306));
 			return status;
 		}
 	}
-	
 	
 	/**
 	 * 检查用户名
@@ -139,7 +143,6 @@ public class SuserController {
 		return status;
 	}
 	
-	
 	/**
 	 * 登陆检查
 	 * @param loginname
@@ -160,6 +163,7 @@ public class SuserController {
 		if (status.getStatus() == 0) {
 			HttpSession session = request.getSession();
 			session.setAttribute("suser", (SuserEntity)status.getData());
+			logger.info("用户登录:"+((SuserEntity)status.getData()).getS_username() );
 		}
 		return status;
 	}
@@ -233,17 +237,13 @@ public class SuserController {
 		response.sendRedirect("html/myMessage.jsp");
 	}
 	
-	
-	
 	/**
 	 * 退出登录
 	 * @throws IOException 
 	 */
 	@RequestMapping("/delsession.do")
 	public void destroySessionAction(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		Object data = request.getSession().getAttribute("Recommendation");
-		request.getSession().invalidate();
-		request.getSession().setAttribute("Recommendation", data);
+		request.getSession().removeAttribute("suser");
 		response.sendRedirect("");
 	}
 }

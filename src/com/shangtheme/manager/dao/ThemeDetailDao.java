@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *@类名：LogInAndRegisterDao
- *@作者: CC
- *@功能：数据
- *@详细：
- *@版本：1.0
- *@日期：2016-9-15
- *@说明：
+ * 类名：LogInAndRegisterDao
+ * 作者: CC
+ * 功能：数据
+ * 详细：
+ * 版本：1.0
+ * 日期：2016-9-15
+ * 说明：
  */
 public interface ThemeDetailDao {
  

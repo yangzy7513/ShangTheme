@@ -6,17 +6,8 @@
  * 
  *****************************/
 $(function(){
-	
 	//设置定时器初始值
 	var time = 60,timer;
-	
-	//检查倒计时是否未执行完
-    var timecookie = $.cookie("timecookie");
-    if (timecookie > 0) {
-		time = timecookie;
-		forbid();
-	}
-	
 	//获取当前主题id
 	var id = GetQueryString("id");
 	if(typeof GoEasy !== 'undefined'){
@@ -37,8 +28,8 @@ $(function(){
         goEasy.subscribe({ 
             channel: 'ShangTheme', 
             onMessage: function(message){ 
-                //当有消息推送到channel “ShangTheme”时，控制台会自动打印出推送的消息 
-                var data = message.content.split("&amp;");
+                //当有消息推送到channel “ShangTheme”时，控制台会自动打印出推送的消息
+                var data = message.content.split("&");
                 if (data[3] == id) {
                 	dotantantan(data[0], data[1], data[2]);
 				}
@@ -76,7 +67,6 @@ $(function(){
 	function  forbid() {
 	    document.getElementById("sendbar").setAttribute("disabled",true);
 	    time--;
-	    $.cookie("timecookie",time);
 	    if(time == 0){
 	        document.getElementById("sendbar").value="重新发送";
 	        document.getElementById("sendbar").removeAttribute("disabled");
@@ -103,8 +93,6 @@ $(function(){
 				 }
 		$("body").barrager(item);
 	}
-	
-	
 })
 
 

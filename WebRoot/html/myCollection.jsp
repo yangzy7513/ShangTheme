@@ -51,32 +51,20 @@
 					<center>
 						<h3 style="margin-top: 100px">-- 猜你喜欢 --</h3>
 					</center>
+					<c:forEach items="${guesslike_col }" var="item">
 					<ul class="portfolio-items d-f apps">
 						<li class="portfolio-item">
 							<div class="item-inner">
-								<img src="../images/portfolio/thumb/5.png" alt="">
-								<h5>Lorem ipsum dolor sit amet</h5>
+								<img src="${pageContext.request.contextPath}/${item.t_picpath.split('&')[0]}" alt="">
+								<h5>${item.t_themename}</h5>
 								<div class="overlay">
 									<a class="preview btn btn-danger" rel="prettyPhoto"
-										href="html/detail.jsp"><i class="icon-eye-open"></i></a>
+										href="detail.jsp?id=${item.t_id}"><i class="icon-eye-open"></i></a>
 								</div>
 							</div>
 						</li>
-						<!--/.portfolio-item-->
 					</ul>
-					<ul class="portfolio-items d-f apps">
-						<li class="portfolio-item">
-							<div class="item-inner">
-								<img src="../images/portfolio/thumb/5.png" alt="">
-								<h5>Lorem ipsum dolor sit amet</h5>
-								<div class="overlay">
-									<a class="preview btn btn-danger" rel="prettyPhoto"
-										href="html/detail.jsp"><i class="icon-eye-open"></i></a>
-								</div>
-							</div>
-						</li>
-						<!--/.portfolio-item-->
-					</ul>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

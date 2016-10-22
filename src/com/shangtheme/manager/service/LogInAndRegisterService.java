@@ -3,13 +3,13 @@ package com.shangtheme.manager.service;
 import com.shangtheme.client.entity.ReturnStatus;
 
 /**
- *@类名：CollectionService
- *@作者: CC
- *@功能：登陆、注册访问层
- *@详细：管理员的登陆、注册。
- *@版本：1.0
- *@日期：2016-9-11
- *@说明：
+ * 类名：CollectionService
+ * 作者: CC
+ * 功能：登陆、注册访问层
+ * 详细：管理员的登陆、注册。
+ * 版本：1.0
+ * 日期：2016-9-11
+ * 说明：
  *	         必须有实现类,可拓展并在此处说明.
  */
 public interface LogInAndRegisterService {

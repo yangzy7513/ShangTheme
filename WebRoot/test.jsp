@@ -29,10 +29,10 @@
 	
 <body>
 	<%@include file="html/common/header.jsp" %><br/><br/>
-				<div class="msgcard">
-					<h6 style="color: #fff; margin-left: 10px;"><i class="icon-trash" style="color: #fff;"></i>系统消息</h6>				
-				
-				</div>			
+	<form action="downloadtheme.do">
+		<input   name="id" value="7" />
+		<button type="submit">提交</button>
+	</form>	
 	
 	
 	
